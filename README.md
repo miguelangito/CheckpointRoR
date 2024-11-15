@@ -1,24 +1,47 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Step by Step CheckpointRoR
 
-Things you may want to cover:
+Clone the repository
 
-* Ruby version
+**https://github.com/miguelangito/CheckpointRoR.git**
 
-* System dependencies
+Then
 
-* Configuration
+**cd CheckpointRoR**
 
-* Database creation
 
-* Database initialization
+Instal the dependencies:
 
-* How to run the test suite
+**bundle install**
 
-* Services (job queues, cache servers, search engines, etc.)
+Set up the database with your configuration
 
-* Deployment instructions
+   **Ejemplo de configuración**:
 
-* ...
+   ```yaml
+   default: &default
+     adapter: postgresql
+     encoding: unicode
+     pool: 5
+     username: tu_usuario_postgres
+     password: tu_contraseña_postgres
+     host: localhost
+
+   development:
+     <<: *default
+     database: checkpoint_ror_development
+
+   test:
+     <<: *default
+     database: checkpoint_ror_test
+
+   production:
+     <<: *default
+     database: checkpoint_ror_production
+     username: <%= ENV['CHECKPOINT_ROR_DATABASE_USERNAME'] %>
+     password: <%= ENV['CHECKPOINT_ROR_DATABASE_PASSWORD'] %>
+```
+Run the Aplication with 
+
+**rails s**
